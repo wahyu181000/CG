@@ -19,7 +19,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/CG">
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow">
