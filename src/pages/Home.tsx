@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Lightbulb, Users, Rocket, Github, ArrowRight } from 'lucide-react';
+import { Code, Lightbulb, Users, Rocket, Github, ArrowRight, X, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { t } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const features = [
     {
@@ -103,7 +105,10 @@ const Home = () => {
             </span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="glass-effect p-8 hover:scale-105 transition-all duration-300 hover:border-primary/50 group">
+            <Card 
+              className="glass-effect p-8 hover:scale-105 transition-all duration-300 hover:border-primary/50 group cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
+            >
               <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
                 AkademiTrack
               </h3>
@@ -162,6 +167,97 @@ const Home = () => {
           </Card>
         </div>
       </section>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="bg-background border rounded-3xl max-w-2xl w-full shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between p-6 border-b">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">AkademiTrack</h2>
+                <span className="inline-block px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
+                  {t('In Development', 'Under Utvikling')}
+                </span>
+              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted rounded-lg"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{t('About the Project', 'Om Prosjektet')}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {t(
+                    'AkademiTrack is an automated attendance tracking system designed specifically for schools. It streamlines the process of monitoring student attendance by automating registration for STU (supervised study time) sessions, saving time and reducing manual errors.',
+                    'AkademiTrack er et automatisert fremmøteregistreringssystem designet spesielt for skoler. Det strømlinjeformer prosessen med å overvåke elevfremmøte ved å automatisere registrering for STU-økter, spare tid og redusere manuelle feil.'
+                  )}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{t('Key Features', 'Nøkkelfunksjoner')}</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>{t('Automatic login and authentication through browser', 'Automatisk innlogging og autentisering gjennom nettleser')}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>{t('Intelligent monitoring of study sessions', 'Intelligent overvåking av studieøkter')}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>{t('Real-time attendance registration', 'Fremmøteregistrering i sanntid')}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>{t('Detailed logging and system notifications', 'Detaljert logging og systemvarsler')}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>{t('Secure local data storage', 'Sikker lokal datalagring')}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <a
+                  href="https://github.com/CyberGutta/AkademiTrack"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <Button className="w-full">
+                    <Github className="mr-2 h-4 w-4" />
+                    {t('View on GitHub', 'Se på GitHub')}
+                  </Button>
+                </a>
+                <a
+                  href="https://cybergutta.github.io/AkademietTrack/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <Button variant="outline" className="w-full">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    {t('Visit Website', 'Besøk Nettside')}
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
