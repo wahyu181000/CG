@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Github, Mail, MapPin, Heart } from 'lucide-react';
 
@@ -26,19 +27,19 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
                   {t('Home', 'Hjem')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   {t('About', 'Om Oss')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
                   {t('Contact', 'Kontakt')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
