@@ -1,20 +1,37 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card } from '@/components/ui/card';
-import { Users, Target, Sparkles } from 'lucide-react';
+import { Users, Target, Sparkles, X, Github, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const About = () => {
   const { t } = useLanguage();
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const teamMembers = [
     {
-      emoji: '👨‍💻',
-      role: t('Developer', 'Utvikler'),
-      description: t('Building the future', 'Bygger fremtiden')
+      name: 'Andreas Nilsen',
+      image: 'andreas.jpg',
+      role: t('Developer & Cybersecurity Student', 'Utvikler & Cybersikkerhetsstudent'),
+      description: t('Cybersecurity focused developer', 'Cybersikkerhet-fokusert utvikler'),
+      github: 'https://github.com/CyberNilsen',
+      bio: {
+        en: 'A focused developer with a passion for building fundamentally secure software. Specializes in C#, Python, and PHP with a strong focus on penetration testing and vulnerability assessment.',
+        no: 'En fokusert utvikler med lidenskap for å bygge grunnleggende sikker programvare. Spesialiserer seg i C#, Python og PHP med sterkt fokus på penetrasjonstesting og sårbarhetsanalyse.'
+      },
+      skills: ['C#', 'Python', 'PHP', 'Penetration Testing', 'Security']
     },
     {
-      emoji: '👨‍💻',
-      role: t('Developer', 'Utvikler'),
-      description: t('Making ideas reality', 'Gjør ideer til virkelighet')
+      name: 'Mathias',
+      image: 'mathias.png',
+      role: t('Developer & Cybersecurity Student', 'Utvikler & Cybersikkerhetsstudent'),
+      description: t('Cybersecurity focused developer', 'Cybersikkerhet-fokusert utvikler'),
+      github: 'https://github.com/CyberHansen',
+      bio: {
+        en: 'IT student with a passion for cybersecurity and development. Experienced in HTML, CSS, JavaScript, Python, and SQL, currently developing secure and efficient applications in C# and Python.',
+        no: 'IT-student med lidenskap for cybersikkerhet og utvikling. Erfaring med HTML, CSS, JavaScript, Python og SQL, jobber nå med å utvikle sikre og effektive applikasjoner i C# og Python.'
+      },
+      skills: ['HTML/CSS', 'JavaScript', 'Python', 'SQL', 'C#']
     }
   ];
 
@@ -114,10 +131,18 @@ const About = () => {
           {teamMembers.map((member, index) => (
             <Card 
               key={index}
-              className="glass-effect p-8 text-center hover:scale-105 transition-all duration-300 hover:border-primary/50"
+              className="glass-effect p-8 text-center hover:scale-105 transition-all duration-300 hover:border-primary/50 group cursor-pointer"
+              onClick={() => setSelectedMember(member)}
             >
-              <div className="text-6xl mb-4">{member.emoji}</div>
-              <h3 className="text-2xl font-semibold mb-2">{member.role}</h3>
+              <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/50 transition-colors">
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
+              <p className="text-primary font-medium mb-2">{member.role}</p>
               <p className="text-muted-foreground">{member.description}</p>
             </Card>
           ))}
@@ -136,6 +161,79 @@ const About = () => {
           </p>
         </Card>
       </div>
+
+      {/* Team Member Modal */}
+      {selectedMember && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          onClick={() => setSelectedMember(null)}
+        >
+          <div 
+            className="bg-background border rounded-3xl max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between p-6 border-b">
+              <div className="flex items-center gap-4">
+                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-primary/20">
+                  <img 
+                    src={selectedMember.image} 
+                    alt={selectedMember.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold mb-1">{selectedMember.name}</h2>
+                  <p className="text-primary font-medium">{selectedMember.role}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted rounded-lg"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{t('About', 'Om')}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {t(selectedMember.bio.en, selectedMember.bio.no)}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{t('Skills', 'Ferdigheter')}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedMember.skills.map((skill, idx) => (
+                    <span 
+                      key={idx}
+                      className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <a
+                  href={selectedMember.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block"
+                >
+                  <Button className="w-full">
+                    <Github className="mr-2 h-4 w-4" />
+                    {t('View GitHub Profile', 'Se GitHub-profil')}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
