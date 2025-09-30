@@ -10,7 +10,7 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'Andreas Nilsen',
+      name: 'Andreas',
       image: 'andreas.jpg',
       role: t('Developer & Cybersecurity Student', 'Utvikler & Cybersikkerhetsstudent'),
       description: t('Cybersecurity focused developer', 'Cybersikkerhet-fokusert utvikler'),
